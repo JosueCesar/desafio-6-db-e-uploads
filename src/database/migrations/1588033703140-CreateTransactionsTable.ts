@@ -22,7 +22,6 @@ export default class CreateTransactionsTable1588033703140
           {
             name: 'title',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'type',
@@ -57,14 +56,14 @@ export default class CreateTransactionsTable1588033703140
         columnNames: ['category_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'categories',
-        onDelete: 'CASCADE',
+        onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('transactions', 'transactionCategory');
+    await queryRunner.dropForeignKey('transactions', 'TransactionCategory');
 
     await queryRunner.dropTable('transactions');
   }
